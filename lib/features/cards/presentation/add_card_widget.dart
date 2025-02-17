@@ -125,7 +125,7 @@ class _AddCardWidgetState extends State<AddCardWidget> {
               hintText: "Enter a number between 100 and 1000"),
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(3),
+            LengthLimitingTextInputFormatter(4),
           ],
           validator: FormBuilderValidators.compose([
             FormBuilderValidators.min(100,
