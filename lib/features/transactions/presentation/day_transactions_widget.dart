@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:test_repo/features/transactions/domain/transaction_entity.dart';
 import 'package:test_repo/features/transactions/presentation/transaction_details_page.dart';
@@ -64,7 +65,7 @@ class DayTransactionsWidget extends StatelessWidget {
               tag: transaction.id,
               child: CircleAvatar(
                 radius: 24,
-                backgroundImage: NetworkImage(transaction.image),
+                backgroundImage: CachedNetworkImageProvider(transaction.image),
               ),
             ),
             SizedBox(

@@ -29,21 +29,20 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   api_request: ^1.0.9
+  cached_network_image: ^3.4.1
+  collection: ^1.19.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
+  easy_stepper: ^0.8.2
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
-  get_it: ^8.0.3
-  hive_ce: ^2.10.1
-  hive_ce_flutter: ^2.2.0
-  collection: ^1.19.0
   flutter_form_builder: ^9.7.0
   form_builder_extra_fields: ^11.1.0
   form_builder_validators: ^11.1.1
-  easy_stepper: ^0.8.2
-  
-
+  get_it: ^8.0.3
+  hive_ce: ^2.10.1
+  hive_ce_flutter: ^2.2.0
 
 dev_dependencies:
   build_runner: ^2.4.13
@@ -57,7 +56,6 @@ dev_dependencies:
     sdk: flutter
   hive_ce_generator: ^1.8.2
   mocktail: ^1.0.0
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
