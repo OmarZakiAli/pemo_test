@@ -2,17 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:test_repo/features/cards/domain/card_entity.dart';
 import 'package:test_repo/features/cards/domain/bloc/cards_bloc.dart';
+import 'package:test_repo/features/cards/domain/card_entity.dart';
 
-class CardWidget extends StatelessWidget {
+class CardWidget extends StatefulWidget {
   const CardWidget({super.key, required this.card});
   final CardEntity card;
 
   @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  bool showBalance = false;
+  @override
   Widget build(BuildContext context) {
     Color textColor =
-        useWhiteForeground(card.uiColor) ? Colors.white : Colors.black;
+        useWhiteForeground(widget.card.uiColor) ? Colors.white : Colors.black;
 
     return Container(
       height: 200,
@@ -20,8 +26,8 @@ class CardWidget extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(boxShadow: [
-        BoxShadow(color: card.uiColor, blurRadius: 3, spreadRadius: 4)
-      ], borderRadius: BorderRadius.circular(16), color: card.uiColor),
+        BoxShadow(color: widget.card.uiColor, blurRadius: 3, spreadRadius: 4)
+      ], borderRadius: BorderRadius.circular(16), color: widget.card.uiColor),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,7 +44,7 @@ class CardWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          card.cardName,
+          widget.card.cardName,
           style: TextStyle(
               fontSize: 28, color: textColor, fontWeight: FontWeight.bold),
         ),
@@ -69,33 +75,23 @@ class CardWidget extends StatelessWidget {
   }
 
   Widget _buildCardFooter(Color textColor) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(card.holderName,
+        Text(widget.card.holderName,
             style: TextStyle(
                 fontSize: 18, color: textColor, fontWeight: FontWeight.w600)),
-        Row(
-          children: [
-            Text("Balance: ", style: TextStyle(fontSize: 16, color: textColor)),
-            Text("${card.balance} USD",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: textColor,
-                    fontWeight: FontWeight.bold)),
-            Spacer(),
-            InkWell(
-              onTap: () {
-                GetIt.instance.get<CardsBloc>().deleteCard(card: card);
-              },
-              child: CircleAvatar(
-                  backgroundColor: Colors.transparent.withValues(alpha: .5),
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.white,
-                  )),
-            )
-          ],
+        Spacer(),
+        InkWell(
+          onTap: () {
+            GetIt.instance.get<CardsBloc>().deleteCard(card: widget.card);
+          },
+          child: CircleAvatar(
+              backgroundColor: Colors.transparent.withValues(alpha: .5),
+              child: Icon(
+                Icons.delete,
+                color: Colors.white,
+              )),
         )
       ],
     );
@@ -104,18 +100,44 @@ class CardWidget extends StatelessWidget {
   _buildBlur() {
     return Container(
       height: 45,
+      width: 250,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
           color: Colors.transparent.withValues(alpha: .2),
           boxShadow: [
             BoxShadow(
-                color: card.uiColor.withValues(alpha: .1),
+                color: widget.card.uiColor.withValues(alpha: .1),
                 blurRadius: 3,
                 spreadRadius: 4)
           ]),
-      child: Text(
-        "xxxx xxxx xxxx xxxx",
-        style: TextStyle(color: Colors.white, fontSize: 20),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            showBalance = !showBalance;
+          });
+          if (showBalance = true) {
+            Future.delayed(Duration(seconds: 2), () {
+              setState(() {
+                showBalance = false;
+              });
+            });
+          }
+        },
+        child: Center(
+          child: showBalance
+              ? Text(
+                  "${widget.card.balance} USD",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w600),
+                )
+              : Text(
+                  "Show Balance",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+        ),
       ),
     );
   }
