@@ -35,17 +35,29 @@ Presentation Layer: Handles UI development using Flutter widgets.
 
 Pemo Demo
 │── core/                # Shared utilities and configurations, dependency injection
+
 │── features/            # Feature-based modules
+
 │   ├── cards/           # Cards feature
+
 │   │   ├── data/        # Data handling (repository implementations, Dtos)
+
 │   │   ├── domain/      # state management(bloc) , abstract repository and entities
+
 │   │   ├── presentation/# UI components (widgets, screens)
+
 │   ├── transactions/    # Transactions feature
+
 │       ├── data/        # Data handling (repository implementations (local and remote), Dtos)
+
 │       ├── domain/      # state management(bloc) , abstract repository and entities
+
 │       ├── presentation/# UI components for transactions
+
 │── theme/               # App-wide styling and themes
+
 │── home_screen.dart     # Main Page of app with 2 tabs , a tab for each feature
+
 │── main.dart            # App initialization
 
 🚀 Getting Started
