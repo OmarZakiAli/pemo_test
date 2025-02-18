@@ -1,4 +1,5 @@
 import 'package:test_repo/features/cards/domain/card_entity.dart';
+import 'package:test_repo/features/transactions/domain/transaction_entity.dart';
 
 class FakeModels {
   static CardEntity validCard = CardEntity(
@@ -28,5 +29,24 @@ class FakeModels {
       holderName: "ali",
       color: "256,244,67,54",
     )
+  ];
+
+  static List<TransactionEntity> fakeTransactions = [
+    TransactionEntity(
+        id: "id1",
+        name: "name1",
+        image: "image1",
+        merchant: "merchant1",
+        billingAmount: 100,
+        date: 1231231,
+        billingCurrency: "USD"),
+    TransactionEntity(
+        id: "id2",
+        name: "name2",
+        image: "image2",
+        merchant: "merchant2",
+        billingAmount: 100,
+        date: 1231251,
+        billingCurrency: "USD"),
   ];
 }
