@@ -39,7 +39,7 @@ Pemo Demo
 │   ├── cards/           # Cards feature
 │   │   ├── data/        # Data handling (repository implementations, Dtos)
 │   │   ├── domain/      # state management(bloc) , abstract repository and entities
-│   │   ├── presentation/# UI components (widgets, )
+│   │   ├── presentation/# UI components (widgets, screens)
 │   ├── transactions/    # Transactions feature
 │       ├── data/        # Data handling (repository implementations (local and remote), Dtos)
 │       ├── domain/      # state management(bloc) , abstract repository and entities
