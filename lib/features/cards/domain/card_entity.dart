@@ -26,4 +26,24 @@ class CardEntity {
     required this.color,
     this.id,
   });
+
+  @override
+  bool operator ==(covariant CardEntity other) {
+    if (identical(this, other)) return true;
+
+    return other.cardName == cardName &&
+        other.holderName == holderName &&
+        other.balance == balance &&
+        other.color == color &&
+        other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    return cardName.hashCode ^
+        holderName.hashCode ^
+        balance.hashCode ^
+        color.hashCode ^
+        id.hashCode;
+  }
 }

@@ -27,7 +27,6 @@ class CardsBloc extends Cubit<CardsState> {
       required int balance}) async {
     String colorAsString =
         "${(color.a * 256).toInt()},${(color.r * 256).toInt()},${(color.g * 256).toInt()},${(color.b * 256).toInt()}";
-
     await _cardsRepo
         .addCard(
             card: CardEntity(
@@ -54,5 +53,9 @@ class CardsBloc extends Cubit<CardsState> {
         emit(CardsState(cards: newCards));
       });
     });
+  }
+
+  clear() {
+    emit(CardsState(cards: []));
   }
 }
